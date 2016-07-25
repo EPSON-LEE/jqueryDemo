@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../jquery-3.1.0.min.js"></script>
+    <style>
+        li{
+            float: left;
+            list-style: none;
+            width: 250px;
+        }
+    </style>
+</head>
+<body>
+<ul>
+    <li><a href="5.jpg" class="tooltip" title="山水 1"><img src="5.jpg" alt="山水 1"/></a></li>
+    <li><a href="6.jpg" class="tooltip" title="山水 2"><img src="6.jpg" alt="山水 2"/></a></li>
+    <li><a href="7.jpg" class="tooltip" title="山水 3"><img src="7.jpg" alt="山水 3"/></a></li>
+    <li><a href="8.jpg" class="tooltip" title="山水 4"><img src="8.jpg" alt="山水 4"/></a></li>
+</ul>
+<script>
+    $(function(){
+        var x = 0;
+        var y = 200;
+        $("a.tooltip").mouseover(function(e){
+        //创建div元素
+
+//            this.myTitle = this.title;
+//            this.title = "";
+//            var imgTitle = this.myTitle ? "<br/>" + this.title:"";
+
+            var tooltip = "<div id='tooltip' style='position: absolute'><img src='"+this.href+"' alt='产品预览图' style='display: block'/>"+this.title+"</div>";
+            $("body").append(tooltip);
+            $("#tooltip")
+                    .css({
+                        "top":  (e.pageY+y) + "px",
+                        "left": (e.pageX+x) + "px"
+                    }).show("slow");//设置X Y坐标并且显示
+        }).mouseout(function(e){
+//           this.title = this.myTitle;
+            $("#tooltip").remove();//移除
+        }).mousemove(function(e){
+            $("#tooltip")
+                    .css({
+                        "top":  (e.pageY+y) + "px",
+                        "left": (e.pageX+x) + "px"
+                    })
+        });
+    })
+</script>
+</body>
+</html>
